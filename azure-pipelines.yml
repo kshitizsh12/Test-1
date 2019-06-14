@@ -17,6 +17,16 @@ steps:
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
+    goals: 'install'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    sonarQubeRunAnalysis: false
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'Test-1/gameoflife-web/pom.xml'
     goals: 'jetty:run'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
